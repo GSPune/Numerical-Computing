@@ -1,5 +1,5 @@
 import numpy as np
-from numpy.linalg import qr
+from numpy.linalg import qr,eig
 
 def qrFactorization(A):
     a = np.array(A)
@@ -8,6 +8,7 @@ def qrFactorization(A):
     return q, r
 
 def printMatrix(B):
+
     r = len(B)
     c = len(B[0])
     for i in range(r):
@@ -29,8 +30,18 @@ if __name__ == "__main__":
     Q, R = qrFactorization(A)
 
     # print("Q:", Q)
+    print("Matrix Q")
     printMatrix(Q)
+    print("Matrix R")
     printMatrix(R)
 
     Product = Q @ R
+    print("Product of Q and R::")
     printMatrix(Product)
+
+    w,v=eig(Product)
+    print("Eigen-value:", w, "\n")
+    print("Eigen-vector:\n", v)
+
+    # print("Eigen-value:", printMatrix(w.tolist()))
+    # print("Eigen-vector", printMatrix(v.tolist()))
